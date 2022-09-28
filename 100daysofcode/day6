@@ -1,0 +1,13 @@
+print("SECURE LOGIN")
+username = input("username > ")
+password = input("password > ")
+if username == "boga" and password == "1234":
+  print("Hello boss")
+elif username == "boga":
+  print("try again")
+elif username == "baga" and password == "1256":
+  print("Hello baga")
+elif username == "bogo" and password == "13":
+  print("Hello senior") 
+else:
+  print("'Register here!'")
