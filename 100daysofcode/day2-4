@@ -1,7 +1,0 @@
-myName = input("What's yor name?: ")
-myFood = input("What's your favourite food?: ")
-myMusic = input("What's your favourite music?: ")
-myCity = input("Where do you live?: ")
-print()
-print()
-print("So you are", "\033[31m", myName, "\033[0m", "you are craving for", myFood, "while you are grooving by listening to", myMusic, "in always sunny", myCity)
