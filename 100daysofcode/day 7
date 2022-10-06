@@ -1,0 +1,12 @@
+tvShow = input("What is your favorite tv show? ")
+if tvShow == "rings of power":
+  print("Oh really?")
+  faveCharacter = input("Dwarfes or Elves?")
+  if faveCharacter == "dwarfes":
+    print("Right answer")
+  else:
+    print("Nah, Dwarfes")
+elif tvShow == "games of thrones":
+  print("Aww, that is cute")
+else:
+  print("Yeah, that's unexpeted, really")
