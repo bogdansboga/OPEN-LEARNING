@@ -1,0 +1,12 @@
+print("GENERATION IDENTIFIER")
+print()
+year = int(input("Which yeaar were you born?  :  "))
+if year == 1998:
+  print("Hi, me too! Generations do not really exist. Define your life by yourself.")
+elif year >= 0:
+  if year < 1998:
+    print("Hi, generations do not really exist. Define your life by yourself.")
+  else:
+    print("Hi, I know you are younger than me so you might not know yet. But generations do not really exist. Define your life by yourself.")
+else:
+  print("no")
