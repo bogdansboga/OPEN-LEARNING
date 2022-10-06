@@ -1,0 +1,47 @@
+name = input("What is your name? -")
+if name == "Bo":
+  print("Oh, hi Bo! What are you up to here?")
+  choice = input("Affirmation or Motivation? -")
+  if choice == "Affirmation" or choice == "affirmation":
+    print("Will fix it for you soon")
+  elif choice == "afirmation":
+    print("Oh gosh")
+  elif choice == "Motivation" or choice == "motivation":
+    print("You will regret")
+  else:
+    print("Decide first, then come back")
+elif name == "Bobo":
+  print("Oh, hi Bobo! What's missing?")
+  choice = input("Affirmation or Motivation? -")
+  if choice == "Affirmation" or choice == "affirmation":
+    print("Noted")
+  elif choice == "afirmation":
+    print("Oh gosh")
+  elif choice == "Motivation" or choice == "motivation":
+    print("He-he")
+  else:
+    print("Decide first, then come back")
+else:
+  print("Lets have your life sorted!")
+  choice = input("Affirmation or Motivation? -")
+  if choice == "Affirmation" or choice == "affirmation":
+    print("Noted")
+  elif choice == "afirmation":
+    print("Oh gosh")
+  elif choice == "Motivation" or choice == "motivation":
+    print("He-he")
+  else:
+    print("Decide first, then come back")
+goal = input("What do you need it for? -")
+if goal == "work" or goal == "Work" or goal == "job" or goal == "Job":
+  print(name, ", life is not only about your career")
+print("Here we go")
+print()
+if (choice == "Motivation" or choice == "motivation" or choice == "affirmation" or choice == "afirmation" or choice == "Affirmation") and (goal == "work" or goal == "Work" or goal == "job" or goal == "Job"):
+  print(name, ", find yourself a hobby! forget about ", goal)
+elif choice == "Affirmation" or choice == "affirmation" or choice == "afirmation":
+  print(name, " , have a good day moving towards ", goal, ". Hope you will find energy for it straight after breakfast.")
+elif choice == "Motivation" or choice == "motivation":
+  print("Get yourself together, ", name, "! STOP WASTING TIME and go for", goal, " NOW")
+else:
+  print("error9")
