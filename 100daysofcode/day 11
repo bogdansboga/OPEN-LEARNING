@@ -1,0 +1,9 @@
+print("Seconds in a year calculator")
+yrs = float(input("How many years?"))
+leap = float(input("How many leap years in the sequence?"))
+if leap == 0:
+  sec = 60 * 60 * 24 * 365 * yrs
+  print(sec)
+else:
+  sec = 60 * 60 * 24 * (365 + leap) * yrs
+  print(sec)
