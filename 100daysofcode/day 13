@@ -1,0 +1,21 @@
+print("Exam Grade Calculator")
+print()
+name = input("Name of the exam?:  ")
+max = float(input("Max. Possible score:  "))
+score = float(input("Your score:  "))
+per = score / max * 100
+rper = round(per, 2)
+if rper < 50:
+  print("You've got", rper, "% for", name, "exam which is an U")
+elif rper <= 59:
+  print("You've got", rper, "% for", name, "exam which is an D")
+elif rper <= 69:
+  print("You've got", rper, "% for", name, "exam which is an C")
+elif rper <= 79:
+  print("You've got", rper, "% for", name, "exam which is an B")
+elif rper <= 89:
+  print("You've got", rper, "% for", name, "exam which is an A")
+elif rper <= 100:
+  print("You've got", rper, "% for", name, "exam which is an A+")
+else:
+  print("error9")
