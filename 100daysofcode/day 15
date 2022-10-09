@@ -1,0 +1,14 @@
+ans = 0
+while ans != "yes":
+  animal = input("What animal do you want?:  ")
+  if animal == "cow" or animal == "Cow":
+    print("A", animal, "goes moo")
+  elif animal == "dog" or animal == "Dog":
+    print("A", animal, "goes woof")
+  elif animal == "cat" or animal == "Cat":
+    print("A", animal, "goes meow")
+  elif animal == "bird" or animal == "Bird":
+    print("A", animal, "goes chirp")
+  else:
+    print("I don't know, maybe", animal, "goes chuchu")
+  ans = input("Do you want to exit?:  ")
