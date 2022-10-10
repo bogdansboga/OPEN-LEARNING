@@ -1,0 +1,54 @@
+print("type in the blank lyrics")
+print()
+attempt = 0
+while True:
+  attempt += 1
+  print("Never gonna ____ you up")
+  ans = input(">  ")
+  if ans == "give":
+    break
+  else:
+    print("No, try again")
+print("Nice one, it took you", attempt, "attempts. let's try next?")
+will = input(">  ")
+if will == "yes" or will == "Yes":
+  attempt = 0
+  while True:
+    attempt += 1
+    print("Never gonna ___ you down")
+    ans = input(">  ")
+    if ans == "let":
+      break
+    else:
+      print("No, try again")
+  print("Nice one, it took you", attempt, "attempts. let's try next?")
+  will = input(">  ")
+  if will == "yes" or will == "Yes":
+    attempt = 0
+    while True:
+      attempt += 1
+      print("Never gonna ___ around and desert you")
+      ans = input(">  ")
+      if ans == "run":
+        break
+      else:
+        print("No, try again")
+    print("Nice one, it took you", attempt, "attempts. let's try next?")
+    will = input(">  ")
+    if will == "yes" or will == "Yes":
+      attempt = 0
+      while True:
+        attempt += 1
+        print("Never gonna ___ around and desert you")
+        ans = input(">  ")
+        if ans == "run":
+          break
+        else:
+          print("No, try again")
+      print("Nice one, it took you", attempt, "attempts. let's try next?")
+    else:
+      print("okay bye")
+  else:
+    print("okay bye")
+else:
+  print("okay bye")
