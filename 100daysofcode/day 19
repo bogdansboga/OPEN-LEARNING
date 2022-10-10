@@ -1,0 +1,16 @@
+print("Loan Calculator")
+
+invest = float(input("How much would you like to put in?: "))
+years = int(input("For how many years?: "))
+per = int(input("How many % APR is?: "))
+per = per / 100
+print()
+print("You invest", invest, "over", years, "years at", per, "% APR")
+print()
+new_invest = invest
+for i in range(years):
+  new_invest += (new_invest * per)
+  print("Year", i+1, "is", round(new_invest, 2))
+print()
+win = new_invest - invest
+print("You paid $", round(win, 2), "in interest!")
