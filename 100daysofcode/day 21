@@ -1,0 +1,17 @@
+print("Math game")
+print()
+x = int(input("Input your number: "))
+print()
+score = 0
+for i in range(1,11):
+  print(i, "x", x, "=")
+  uans = int(input())
+  ans = i * x
+  print(ans, uans)
+  if ans == uans:
+    score += 1
+    print("WOW")
+  else:
+    print("no")
+print()
+print("Your score is", score, "out of 10")
