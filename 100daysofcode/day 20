@@ -1,0 +1,6 @@
+start = int(input("where to start? "))
+stop = int(input("where to stop? "))
+step = int(input("what is the step? "))
+
+for i in range(start, stop, step):
+  print(i)
