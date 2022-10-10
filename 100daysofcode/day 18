@@ -1,0 +1,22 @@
+print("Guess the Number")
+print()
+num = 99999
+attempt = 1
+
+while True:
+  guess = int(input("Pick a number between 1 and 1,000,000: "))
+  if guess < 0:
+    print("Now we'll never know what the answer is …")
+    exit()
+  elif guess < num:
+    print("That number is too low. Try again!")
+    attempt += 1
+  elif guess > num:
+    print("That number is too high. Try again!")
+    attempt += 1
+  elif guess == num:
+    print("You've won")
+    break 
+  else:
+    print("That is not a number I recognize.")
+print("It took you", attempt, "attempt(s) to get the correct answer.")
