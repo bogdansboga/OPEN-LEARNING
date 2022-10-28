@@ -1,0 +1,20 @@
+import random
+ans = "yes"
+print("Player's stats generator")
+def rollDice(sides):
+  res = random.randint(1,sides)
+  return res
+
+def rollHP():
+  roll6 = rollDice(6)
+  roll8 = rollDice(8)
+  hp = roll6 * roll8
+  return hp
+
+while ans == "yes":
+  name = input("Name your character: ")
+  hp = rollHP()
+  print(name, "'s health points are", hp)
+  ans = input("want to add another one?: ")
+else:
+  print("Thank you")
