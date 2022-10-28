@@ -3,7 +3,7 @@ print("Guess the Number")
 print()
 ans = "yes"
 while ans == "yes" or ans == "Yes":
-  num = random.randint(1,100)
+  num = random.randint(1,1000000)
   attempt = 1
   
   while True:
