@@ -1,0 +1,86 @@
+import random, os, time
+
+def rollDice(side):
+  result = random.randint(1,side)
+  return result
+
+def hp():
+  health = ((rollDice(6)*rollDice(12))/2)+10
+  return health
+
+def attack():
+  strength = ((rollDice(6)*rollDice(8))/2)+12
+  return strength
+
+print("⚔️ CHARACTER BUILDER ⚔️")
+print()
+name1 = input("Name your Character:\n")
+type1 = input("Character Type (Human, Elf, Wizard, Orc):\n")
+print()
+print(name1)
+hp1 = hp()
+at1 = attack()
+print("HEALTH:", hp1)
+print("STRENGTH:", at1)
+print()
+print("Welcome,", name1, "!", )
+print()
+
+name2 = input("Name your Character:\n")
+type2 = input("Character Type (Human, Elf, Wizard, Orc):\n")
+print()
+print(name2)
+hp2 = hp()
+at2 = attack()
+print("HEALTH:", hp2)
+print("STRENGTH:", at2)
+print()
+print("Welcome,", name2, "!", )
+print()
+round = 1
+winner = 0
+while True:
+  time.sleep(1)
+  os.system("clear")
+  print("Battle begins!")
+  print()
+  n1d = rollDice(6)
+  n2d = rollDice(6)
+  diff = abs(at1-at2) + 1
+  
+  if n1d > n2d:
+    hp2 -= diff
+    if round==1:
+      print(name1, "wins")
+    else:
+      print(name1, "wins round", round)
+  elif n1d < n2d:
+    hp1 -= diff
+    if round==1:
+      print(name2, "wins")
+    else:
+      print(name2, "wins round", round)
+  else:
+    print("Draw, round", round)
+  print(name1)
+  print("HEALTH:", hp1)
+  print(name2)
+  print("HEALTH:", hp2)
+  print()
+  if hp1<=0:
+    print(name1, "has died")
+    winner = name2
+    break
+  elif hp2<=0:
+    print(name2, "has died")
+    winner = name2
+    break
+  else:
+    round += 1
+    print("They both ready for the next round", round)
+
+time.sleep(1)
+os.system("clear")
+print("winner")
+print()
+print(winner, "has won in", round, "rounds")
