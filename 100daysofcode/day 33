@@ -1,0 +1,32 @@
+todo = []
+
+def colorChange(color):
+  if color=="red":
+    return ("\033[31m")
+  elif color=="white":
+    return ("\033[0m")
+
+def view():
+  print()
+  for item in todo:
+    print(item)
+  print()
+def add():
+  item = input("What's next?: ")
+  todo.append(item)
+def edit():
+  item = input("What to remove?: ")
+  todo.remove(item)
+
+
+print(f"\t{colorChange('white')}HELLO")
+print(f"\t{colorChange('red')}it's your toDo list") 
+print()
+while True:
+  menu = input("view, add or remove?: ")
+  if menu == "add":
+    add()
+  elif menu == "remove":
+    edit()
+  elif menu == "view":
+    view()
