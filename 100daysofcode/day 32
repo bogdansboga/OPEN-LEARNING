@@ -1,0 +1,4 @@
+import random
+greetings = ["Hello there!", "Konnichiwa", "Labdien!", "Hola"]
+index = random.randint(0,3)
+print(greetings[index])
