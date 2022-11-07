@@ -1,0 +1,33 @@
+import os, time
+
+myList = []
+
+def printList():
+  os.system("clear")
+  print("Your characters are:\n")
+  print()
+  for i in myList:
+    print(i)
+  print()
+
+while True:
+  print("StarWars name generator")
+  name = input("Name > ").capitalize().strip()
+  sur = input("Surname > ").lower().strip()
+  usern = f"{name[0:3]}{sur[0:3]}"
+  mum = input("Mum's maiden name > ").capitalize().strip()
+  city = input("City you've born > ").lower().strip()
+  users = f"{mum[0:2]}{city[0:3]}"
+  user = f"{usern} {users}"
+  if user not in myList:
+    myList.append(user)
+  else:
+    print("DUPLICATE ERROR")
+  ans = input("Would you like to add another character? > ").lower().strip()
+  if ans == "yes":
+    time.sleep(1)
+    os.system("clear")
+    continue
+  else:
+    break
+printList()
