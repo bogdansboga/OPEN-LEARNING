@@ -1,0 +1,17 @@
+myList = []
+
+def printList():
+  print()
+  for i in myList:
+    print(i)
+  print()
+
+while True:
+  name = input("Name > ").capitalize().strip()
+  sur = input("Surname > ").capitalize().strip()
+  user = f"{name}{sur}"
+  if user not in myList:
+    myList.append(user)
+  else:
+    print("DUPLICATE ERROR")
+  printList()
