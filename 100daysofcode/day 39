@@ -1,0 +1,42 @@
+import random, os, time
+
+list = ["british", "suave", "integrity", "accent", "evil", "genius", "Downton"]
+letterP = []
+lives = 6
+
+word = random.choice(list)
+
+while True:
+  letter = input("Letter of your choice: ").lower()
+  if letter in letterP:
+    print("You've picked that already")
+    continue
+    
+  letterP.append(letter)
+  
+  if letter in word:
+    print("There is letter like this!")
+  else:
+    print("Nope! Try again")
+    lives -= 1
+    
+  all = True  
+  print()
+  for i in word:
+    if i in letterP:
+      print(i, end="")
+    else:
+      print("_", end="")
+      all = False
+  print()
+
+  if all:
+    print(f"You've won with {lives} lives left")
+    break
+
+  if lives<=0:
+    print(f"You dead! The answer was {word.upper()}")
+    break
+  else:
+    print(f"You have only {lives} lives left")
+  
