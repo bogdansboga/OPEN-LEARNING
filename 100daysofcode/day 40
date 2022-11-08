@@ -1,0 +1,17 @@
+info = {}
+name = input("Input your name >").strip().capitalize()
+info.update({"name": name})
+date = input("Input your DOB >").strip()
+info.update({"date": date})
+phon = input("Input your phone number >")
+info.update({"phone": phon})
+mail = input("Input your e-mail >")
+info.update({"email": mail})
+add = input("Input your address >")
+info.update({"address": add})
+
+print(f"""Hi, {info["name"]}.
+We see that you've born on {info["date"]},
+your contacts are mobile {info["phone"]} and
+email {info["email"]} or
+address {info["address"]}""")
