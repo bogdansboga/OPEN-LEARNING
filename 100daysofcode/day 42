@@ -1,0 +1,33 @@
+def colorChange(color):
+  if color=="red":
+    print("\033[31m", end="")
+  elif color=="white":
+    print("\033[0m", end="")
+  elif color=="blue":
+    print("\033[34m", end="")
+  elif color=="yellow":
+    print("\033[33m", end="")
+  elif color == "green":
+    print("\033[32m", end="")
+  elif color == "purple":
+    print("\033[35m", end="")
+
+mokedex = {"Beast Name": None, "Type": None, "Special move": None, "HP": None, "NP": None}
+print("MokeBeasts game!")
+print()
+for name, value in mokedex.items():
+  mokedex[name] = input (f"{name}:\t").strip().title()
+
+if mokedex["Type"]=="Earth":
+  colorChange("green")
+elif mokedex["Type"]=="Air":
+  colorChange("white")
+elif mokedex["Type"]=="Water":
+  colorChange("blue")
+elif mokedex["Type"]=="Fire":
+  colorChange("red")
+else:
+  colorChange("purple")
+
+for name, value in mokedex.items():
+  print(f"{name:<15}: {value}")
