@@ -1,0 +1,9 @@
+import os, time
+f = open("high.score", "a+")
+for i in range(3):
+  name = input("Your name > ")
+  score = input("Your score >")
+  f.write(f"{name} ---- {score}\n")
+  time.sleep(1)
+  os.system("clear")
+f.close()
