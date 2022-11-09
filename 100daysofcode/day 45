@@ -1,0 +1,75 @@
+import os, time
+todo = []
+
+def add():
+  time.sleep(1)
+  os.system("clear")
+  name = input("What's the task?: ")
+  date = input("When's the deadline?: ")
+  lvl = input("What's the priority level (HIGH\LOW)?: ").capitalize()
+  row = [name, date, lvl]
+  todo.append(row)
+  print("ADDED")
+
+def view():
+  time.sleep(1)
+  os.system("clear")
+  option = input("1: View all\n2: By priority\n>  ")
+  if option=="1":    
+    for row in todo:
+      for item in row:
+        print(item, end=" | ")
+      print()
+    print()
+  else:
+    lvl = input("What priority level (HIGH\LOW)> ").capitalize()
+    for row in todo:
+      if lvl in row:
+        for item in row:
+          print(item, end=" | ")
+        print()
+    print()
+  time.sleep(1)
+
+def edit():
+  time.sleep(1)
+  os.system("clear")
+  find = input("Name of todo to edit > ")
+  found = False
+  for row in todo:
+    if find in row:
+      found = True
+  if not found:
+    print("ERROR404 ToDo not found ")
+    time.sleep(1)
+    return
+  for row in todo:
+    if find in row:
+      todo.remove(row)
+  name = input("Name > ")
+  date = input("Due Date > ")
+  priority = input("Priority > ").capitalize()
+  row = [name, date, priority]
+  todo.append(row)
+  print("Added")
+
+def remove():
+  time.sleep(1)
+  os.system("clear")
+  find = input("Name of todo to remove > ")
+  for row in todo:
+    if find in row:
+      todo.remove(row)
+
+while True:
+  menu = input("1: View\n2: Add\n3: Remove\n4: Edit\n>  ")
+  if menu == "1":
+    view()
+  elif menu == "2":
+    add()
+  elif menu == "3":
+    remove()
+  elif menu == "4":
+    edit()
+  time.sleep(1)
+  os.system("clear")
