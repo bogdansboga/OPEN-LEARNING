@@ -14,19 +14,29 @@ def view():
 def add():
   item = input("What's next?: ")
   todo.append(item)
-def edit():
+def remove():
   item = input("What to remove?: ")
-  todo.remove(item)
-
-
+  if item in todo:
+    todo.remove(item)
+  else:
+    print("ERROR404")
+def edit():
+  item = input("What to edit?: ")
+  if item in todo:    
+    nitem = input("What do you want to change it for?")
+    item = nitem
+  else:
+    print("ERROR404")
 print(f"\t{colorChange('white')}HELLO")
-print(f"\t{colorChange('red')}it's your toDo list") 
+print(f"\t{colorChange('red')}It's your toDo list{colorChange('white')}") 
 print()
 while True:
-  menu = input("view, add or remove?: ")
-  if menu == "add":
-    add()
-  elif menu == "remove":
-    edit()
-  elif menu == "view":
+  menu = input("1: View\n2: Add\n3: Remove\n4: Edit\n>  ")
+  if menu == "1":
     view()
+  elif menu == "2":
+    add()
+  elif menu == "3":
+    remove()
+  elif menu == "4":
+    edit()
