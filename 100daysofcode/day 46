@@ -1,0 +1,44 @@
+import os, time
+
+mokedex = {}
+
+def colorChange(color):
+  if color=="red":
+    print("\033[31m", end="")
+  elif color=="white":
+    print("\033[0m", end="")
+  elif color=="blue":
+    print("\033[34m", end="")
+  elif color=="yellow":
+    print("\033[33m", end="")
+  elif color == "green":
+    print("\033[32m", end="")
+  elif color == "purple":
+    print("\033[35m", end="")
+
+def prettyPrint():
+  print(f"\tName\ttype\tHP\tMP")
+  for key, value in mokedex.items():
+    if value["type"] =="Earth":
+      colorChange("green")
+    elif value["type"] =="Air":
+      colorChange("white")
+    elif value["type"] =="Water":
+      colorChange("blue")
+    elif value["type"] =="Fire":
+      colorChange("red")
+    else:
+      colorChange("purple")
+    print(f"""{key:^10}|{value["type"]:^9}|{value["hp"]:^3}|{value["mp"]:^3}""")
+
+while True:
+  colorChange("white")
+  print("Add your Beast!")
+  name = input("Name > ").title()
+  type = input("Type > ").title()
+  hp = int(input("HP > "))
+  mp = int(input("MP > "))
+  mokedex[name] = { "type": type, "hp": hp, "mp": mp}
+  print("----------")
+  print()
+  prettyPrint()
