@@ -1,0 +1,40 @@
+import random, time, os
+bingo = []
+numbers = []
+xs = 0
+
+def ran():
+  number = random.randint(1,90)
+  return number
+def pprint():
+  for row in bingo:
+    for item in row:
+      print(item, end="\t |\t  ")
+    print()
+def create():
+  global bingo
+  for i in range(8):
+    num = ran()
+    while num in numbers:
+      num = ran()
+    numbers.append(ran())  
+  numbers.sort() 
+  bingo = [[numbers[0], numbers[1], numbers[2]],
+           [numbers[3], "BINGO", numbers[4]],
+           [numbers[5], numbers[6], numbers[7]]
+          ]
+  
+create()
+while True:
+  pprint()
+  num = int(input("Next number: "))
+  for row in range(3):
+    for item in range(3):
+      if bingo[row][item] == num:
+        bingo[row][item] = "X"
+        xs+=1
+  if xs == 8:
+    print("YOU'VE WON")
+    break
+  time.sleep(1)
+  os.system("clear")
