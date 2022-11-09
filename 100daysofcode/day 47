@@ -1,0 +1,33 @@
+import os, time, random
+
+trumps = {}
+trumps["boga"] = {"Intelligence": random.randint(1, 100), "Speed": random.randint(3, 30), "Attack": random.randint(3, 20), "Hair": random.randint(3, 10)}
+trumps["gobo"] = {"Intelligence": random.randint(1, 100), "Speed": random.randint(3, 30), "Attack": random.randint(3, 20), "Hair": random.randint(3, 10)}
+trumps["agob"] = {"Intelligence": random.randint(1, 100), "Speed": random.randint(3, 30), "Attack": random.randint(3, 20), "Hair": random.randint(3, 10)}
+trumps["goab"] = {"Intelligence": random.randint(1, 100), "Speed": random.randint(3, 30), "Attack": random.randint(3, 20), "Hair": random.randint(3, 10)}
+
+while True:
+  print("BATTLE TIME")
+  print()
+  print("Characters")
+  print()
+  for key in trumps:
+    print(key)
+  user = input("Pick your character\n>")
+  comp = random.choice(list(trumps.keys()))
+  print("Your opponents is", comp)
+
+  print()
+  ans = input("Choose your battle\nIntelligence Speed Attack Hair\n> ").capitalize()
+  if trumps[user][ans] > trumps[comp][ans]:
+    print(f"{user} {trumps[user][ans]}\t|\t{trumps[comp][ans]} {comp}")
+    print(user, "wins")
+  elif trumps[user][ans] < trumps[comp][ans]:
+    print(f"{user} {trumps[user][ans]}\t|\t{trumps[comp][ans]} {comp}")
+    print(comp, "wins")
+  else:
+    print(f"{user} {trumps[user][ans]}\t|\t{trumps[comp][ans]} {comp}")
+    print("draw")
+
+  time.sleep(4)
+  os.system("clear")
