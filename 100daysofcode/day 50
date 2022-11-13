@@ -1,0 +1,37 @@
+import os, time, random
+
+def add():
+  os.system("clear")
+  idea = input("IDEA>")
+  f = open("my.ideas", "a+")
+  f.write(f"{idea}\n")
+  f.close()
+  time.sleep(1)
+  os.system("clear")
+  
+def show():
+  f = open("my.ideas", "r")
+  ideas = f.read().split("\n")
+  f.close()
+  ideas.remove("")
+  idea = random.choice(ideas)
+  print(idea)
+  time.sleep(2)
+  os.system("clear")
+  
+while True:
+  menu = input("1: Add\n2: Show random\n>")
+  if menu == "1":
+    add()
+  else:
+    show()
+
+
+for rows in scores:
+  data = rows.split()
+  print(data)
+  if data != []:
+    if int(data[1])>hs:
+      hs=int(data[1])
+      name=data[0]
+print(f"The winner is {name} with the score {hs}")
