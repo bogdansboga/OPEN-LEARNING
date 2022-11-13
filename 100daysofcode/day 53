@@ -1,0 +1,61 @@
+import os, time
+inv = []
+
+def add():
+  time.sleep(1)
+  os.system("clear")
+  print("INVENTORY")
+  print("_________")
+  print()
+  item = input("Item to add: >").capitalize()
+  inv.append(item)
+  print("DONE")
+
+def remove():
+  time.sleep(1)
+  os.system("clear")
+  print("INVENTORY")
+  print("_________")
+  print()
+  item = input("Item to remove: >").capitalize()
+  if item in inv:
+    inv.remove(item)
+    print("REMOVED")
+  else:
+    print("NO ITEM")
+
+def view():
+  time.sleep(1)
+  os.system("clear")
+  print("INVENTORY")
+  print("_________")
+  print()
+  seen = set(inv)
+  for item in seen:
+    print(f"{item} {inv.count(item)}")
+  time.sleep(2)
+  
+try:
+  f = open("inv.txt", "r")
+  inv = eval(f.read())
+  f.close()
+except:
+  pass
+  
+while True:
+  time.sleep(1)
+  os.system("clear")
+  print("INVENTORY")
+  print("_________")
+  print()
+  menu = input("1: Add\n2: View\n3: Remove\n>")
+  if menu == "1":
+    add()
+  elif menu == "2":
+    view()
+  else:
+    remove()
+
+  f = open("inv.txt", "w")
+  f.write(str(inv))
+  f.close()
