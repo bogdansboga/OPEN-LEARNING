@@ -1,0 +1,34 @@
+from replit import db
+import os, time, datetime
+
+def add():
+  tweet = input(">  ")
+  stamp = datetime.datetime.now()
+  key = f"mes{stamp}"
+  db[key] = tweet
+  time.sleep(1)
+  os.system("clear")
+def view(): 
+  matches = db.prefix("mes")
+  matches = matches[::-1]
+  counter = 0
+  for i in matches:
+    print(db[i])
+    print()
+    time.sleep(0.5)
+    counter+=1
+    if(counter%10==0):
+      more = input("More? y/n >")
+      if more == "n":
+        break
+      else:
+        continue
+
+while True:
+  print("TWEETER")
+  print()
+  ans = input("1: Add\n2: View\n>")
+  if ans == "1":
+    add()
+  else:
+    view()
