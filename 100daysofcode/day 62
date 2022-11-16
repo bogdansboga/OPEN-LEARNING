@@ -1,0 +1,31 @@
+from replit import db
+import os, time, datetime
+
+def add():
+  time.sleep(1)
+  os.system("clear")
+  stamp = datetime.datetime.now()
+  print(f"Diary entry for {stamp}")
+  print()
+  entry = input("> ")
+  db[stamp] = entry
+
+def view():
+  keys = db.keys()
+  for key in keys:
+    time.sleep(1)
+    os.system("clear")
+    print(f"""{key}
+    {db[key]}""")
+    print()
+    ans = input("More or exit? > ")
+    if(ans.lower()[0]=="e"):
+      break
+
+while True:
+  os.system("clear")
+  menu = input("1: Add\n2: View\n> ")
+  if menu == "1":
+    add()
+  else:
+    view()
