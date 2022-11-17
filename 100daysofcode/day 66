@@ -1,0 +1,13 @@
+import os
+
+while True:
+  username = input("Username: ")
+  password = input("Password: ")
+  if username == os.environ['adminName'] and password == os.environ['adminPass']:
+    print("WELCOME ADMIN")
+    break
+  elif username == os.environ['username'] and password == os.environ['password']:
+    print("hi you")
+    break
+  else:
+    print("ERROR")
