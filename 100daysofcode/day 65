@@ -1,0 +1,83 @@
+class character:
+  name = None
+  hp = 100
+  mp = 100
+
+  def __init__(self, name):
+    self.name = name
+
+  def print(self):
+    print(f"{self.name}\tHP: {self.hp}\tMP: {self.mp}")
+
+  def setStats(self, hp, mp):
+    self.hp = hp
+    self.mp = mp
+
+class player(character):
+  nick = None
+  lives = 3
+
+  def __init__(self, nick):
+    self.name = "Boga"
+    self.nick = nick
+
+  def print(self):
+    print(f"{self.name}\tHP: {self.hp}\tMP: {self.mp}\tNickname: {self.nick}\tLives: {self.lives}")  
+    
+  def isAlive(self):
+    if self.lives > 0:
+      print(f"{self.nick} still lives")
+      return True
+    else:
+      print(f"{self.nick} is dead")
+      return False
+
+class enemy(character):
+  type = None
+  str = None
+
+  def __init__(self, name, type, str):
+    self.name = name
+    self.type = type
+    self.str = str
+
+  def print(self):
+    print(f"{self.name}\tHP: {self.hp}\tMP: {self.mp}\tStrength: {self.str}")
+
+class orc(enemy):
+  speed = None
+
+  def __init__(self, speed):
+      self.name = "Orc"
+      self.type = "Orc"
+      self.str = 200
+      self.speed = speed
+    
+  def print(self):
+    print(f"{self.name}\tHP: {self.hp}\tMP: {self.mp}\tType: {self.type}\tStrength: {self.str}\tSpeed: {self.speed}")
+
+class vampire(enemy):
+  day = True
+
+  def __init__(self, day):
+    self.name = "Vampire"
+    self.type = "Vampire"
+    self.str = 150
+    self.day = day
+   
+  def print(self):
+    print(f"{self.name}\tHP: {self.hp}\tMP: {self.mp}\tType: {self.type}\tStrength: {self.str}\tDay: {self.day}")
+    
+print()
+isn = player("Ian") 
+isn.print()
+print(isn.isAlive())
+print()
+bill = orc(250)
+libi = orc(200)
+bill.print()
+libi.print()
+print()
+draco = vampire(False)
+draco.print()
+print()
