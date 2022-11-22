@@ -1,0 +1,26 @@
+from flask import Flask, redirect
+
+app = Flask(__name__, static_url_path="/static")
+
+
+@app.route('/')
+def index():
+    page = ""
+    return page
+
+@app.route('/hello')
+def hello():
+    title = "HELLO WORLD"
+    date = "NOV22"
+    text = "Here is my first entry"
+    page = ""
+    f = open("template/blog.html", "r")
+    page = f.read()
+    f.close()
+    page = page.replace("{title}", title)
+    page = page.replace("{date}", date)
+    page = page.replace("{text}", text)
+    
+    return page
+ 
+app.run(host='0.0.0.0', port=81)
