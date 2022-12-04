@@ -1,1 +1,38 @@
+from flask import Flask, request
 
+app = Flask(__name__)
+
+@app.route("/robot", methods=["POST"])
+def robot():
+  form = request.form
+  if form["robo"] == "yes":
+    return "ha! robot!"
+  elif form["food"] == "human":
+    return "ha! robot!"
+  else:
+    return "human, eh"
+  
+@app.route('/')
+def index():
+  page = ""
+  f = open("form.html", "r")
+  page = f.read()
+  f.close()
+  return page
+
+  
+app.run(host='0.0.0.0', port=81)
+
+
+
+####html part
+##<form method="post" action="/robot">
+
+  <p>are you robot?<input type="radio" name="robo" value="yes"> yes </p>
+  <input type="radio" name="metal" value="no"> no </p>
+
+  <p>what is robot food? <select name="food"><option value="human">human food</option><option value="robot">robot food</option></select></p>
+
+  <button type="submit">im not a robot</button>
+
+</form>
