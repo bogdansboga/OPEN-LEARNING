@@ -1,29 +1,36 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
+
+logins = {}
+logins["bo"] = {"email" : "bo@bo.lv", "password" : "bo"}
+logins["ob"] = {"email" : "ob@bo.lv", "password" : "bb"}
+logins["bob"] = {"email" : "bob@bo.lv", "password" : "bobb"}
+
+@app.route("/login", methods = ["POST"])
+def login():
+  form = request.form
+  isThere = False
+  details = {}
+  try:
+    details = logins[form["username"]]
+    isThere = True
+  except:
+    return "Input incorrect"
+  if form["email"] == details["email"] and form["password"] == details["password"]:
+    return "u in"
+  else:
+    return "Input incorrect"
 
 
 @app.route('/')
 def index():
-  page = """<form method = "post" action="/process">
-    <p>Name: <input type="text" name="username" required> </p>
-    <p>Email: <input type="Email" name="email"> </p>
-    <p>Website: <input type="url" name="website"> </p>
-    <p>Age: <input type="number" name="age"> </p>
-    <input type="hidden" name="userID" value="232"> </p>
-
-    <p>
-      Fave Baldy: 
-      <select name="baldies">
-        <option>David</option>
-        <option>Jean Luc Picard</option>
-        <option>Yul Brynner</option>
-      </select>
-    </p>
-
-    <button type="submit">Save Data</button>
-  </form>
-    """
+  page = """<form method = "post" action="/login">
+    <p>Name: <input type="text" name="username" required></p>
+    <p>Email: <input type="Email" name="email" required"></p>
+    <p>Password: <input type="password" name="password" required"></p>
+    <button type="submit">Login</button>
+  </form>"""
   return page
   
 app.run(host='0.0.0.0', port=81)
