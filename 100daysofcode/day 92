@@ -1,0 +1,32 @@
+import requests, json
+
+def getCode(code):
+  if code == 0:
+    return "Clear sky"
+  elif code==1 or code==2 or code==3:
+    return "mainly clear"
+  elif code==45 or code==48:
+    return "fog"
+  elif code==51 or code==53:
+    return "drizzle"
+  elif code==56 or code==57:
+    return "freezle"
+  elif code==63 or code==61 or code==65:
+    return "rain"
+  else:
+    return "other bad weather"
+
+timezone = "GMT"
+latitude = 51.5002
+longitude = -0.1262
+
+result = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone={timezone.upper()}")
+
+user = result.json()
+#print(json.dumps(user, indent=2))
+
+wc = user["daily"]["weathercode"][0]
+min = user["daily"]["temperature_2m_min"][0]
+max = user["daily"]["temperature_2m_max"][0]
+
+print(f"{getCode(wc)}\nhot: {max}\tcold:{min}")
