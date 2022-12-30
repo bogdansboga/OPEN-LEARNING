@@ -1,0 +1,27 @@
+import requests, json, os, time
+from replit import db
+
+while(True):
+  time.sleep(1)
+  os.system("clear")
+  
+  result = requests.get("https://icanhazdadjoke.com/", headers={"Accept":"application/json"}) 
+  
+  joke = result.json()
+  jok = joke["joke"]
+  id = joke["id"]
+  print(jok)
+  
+  ans = input("\n s - save, l - load, n - new joke\n> ").lower()
+  if ans == "n":
+    continue
+  elif ans == "s":
+    db[id] = jok
+    print("\n saved\n")
+    continue
+  else:
+    keys = db.keys()
+    for key in keys:
+      print(db[key])
+      print()
+      time.sleep(1)
