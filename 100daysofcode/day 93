@@ -1,0 +1,57 @@
+#### main.py ###
+from flask import Flask, request
+import os, requests, json
+from requests.auth import HTTPBasicAuth
+from replit import db
+
+
+cID = os.environ['CLIENT_ID']
+cSC = os.environ['CLIENT_SECRET']
+
+url = "https://accounts.spotify.com/api/token"
+data = { "grant_type": "client_credentials"}
+auth = HTTPBasicAuth(cID, cSC)
+
+response = requests.post(url, data=data, auth=auth)
+accessToken = response.json()["access_token"]
+
+year = 1990
+offset = 0
+
+headers = {"Authorization" : f"Bearer {accessToken}"}
+url = "https://api.spotify.com/v1/search"
+search = f"?q=year%3A{year}&type=track&limit=10&offset={offset}"
+
+furl = f"{url}{search}"
+
+response = requests.get(furl, headers=headers)
+data = response.json()
+
+for track in data["tracks"]["items"]:
+  print(f"""{track["name"]} by {track["artists"][0]["name"]}""")
+  print(track["preview_url"])
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  page = ""
+  return page
+  
+
+
+app.run(host='0.0.0.0', port=81)
+
+
+### form.html ####
+<html>
+  <head>
+    <title>tracks by years</title>
+  </head>
+  <body>
+    <h1>Tracks of my Years</h1>
+    <form method="post" action="/">
+      <p>Year :<input type = "number" min="1900" max="2023" name="year"> <button type="submit">GO</button></p>
+    </form>
+  </body>
+</html>
