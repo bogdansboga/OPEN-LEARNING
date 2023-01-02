@@ -4,44 +4,85 @@ import os, requests, json
 from requests.auth import HTTPBasicAuth
 from replit import db
 
+def music(year):
+  cID = os.environ['CLIENT_ID']
+  cSC = os.environ['CLIENT_SECRET']
+  
+  url = "https://accounts.spotify.com/api/token"
+  data = { "grant_type": "client_credentials"}
+  auth = HTTPBasicAuth(cID, cSC)
+  
+  response = requests.post(url, data=data, auth=auth)
+  accessToken = response.json()["access_token"]
+  
+  offset = 0
+  try: 
+    offset = db[year]
+    if offset> 200:
+      db[year] = 0
+    db[year] += 10
+  except:
+    db[year] = 10
+    
+  headers = {"Authorization" : f"Bearer {accessToken}"}
+  url = "https://api.spotify.com/v1/search"
+  search = f"?q=year%3A{year}&type=track&limit=10&offset={offset}"
+  
+  furl = f"{url}{search}"
+  
+  response = requests.get(furl, headers=headers)
+  data = response.json()
 
-cID = os.environ['CLIENT_ID']
-cSC = os.environ['CLIENT_SECRET']
+  songs = ""
+  f = open("songs.html", "r")
+  songs = f.read()
+  f.close()
 
-url = "https://accounts.spotify.com/api/token"
-data = { "grant_type": "client_credentials"}
-auth = HTTPBasicAuth(cID, cSC)
-
-response = requests.post(url, data=data, auth=auth)
-accessToken = response.json()["access_token"]
-
-year = 1990
-offset = 0
-
-headers = {"Authorization" : f"Bearer {accessToken}"}
-url = "https://api.spotify.com/v1/search"
-search = f"?q=year%3A{year}&type=track&limit=10&offset={offset}"
-
-furl = f"{url}{search}"
-
-response = requests.get(furl, headers=headers)
-data = response.json()
-
-for track in data["tracks"]["items"]:
-  print(f"""{track["name"]} by {track["artists"][0]["name"]}""")
-  print(track["preview_url"])
-
+  playlist = ""
+  
+  for track in data["tracks"]["items"]:
+    ctrack = songs
+    ctrack = ctrack.replace("{name}",f"""{track["name"]} by {track["artists"][0]["name"]}""")
+    ctrack = ctrack.replace("{url}",track["preview_url"])
+    playlist += ctrack
+    
+  return playlist
+    
 app = Flask(__name__)
+
+@app.route("/", methods=["POST"])
+def change():
+  page = ""
+  f = open("form.html", "r")
+  page = f.read()
+  f.close()
+  year = request.form["year"]
+  songs = music(year)
+  page = page.replace("{songs}", songs)
+  page = page.replace("{value}", year)
+  
+  return page
 
 @app.route('/')
 def index():
   page = ""
+  f = open("form.html")
+  page = f.read()
+  f.close()
+  page = page.replace("{songs}", "")
+  page = page.replace("{value}", "1990")
   return page
   
 
-
 app.run(host='0.0.0.0', port=81)
 
+### songs.html ### 
+<h2>{name}</h2>
+<br>
+<audio controls>
+  <source src="{url}" type="audio/mpeg">
+</audio>
+<hr>
 
 ### form.html ####
 <html>
