@@ -1,0 +1,58 @@
+import requests, json, os
+import openai
+from requests.auth import HTTPBasicAuth
+
+news = os.environ['newsapi']
+openai.organisation = os.environ['organizationID']
+openai.api_key = os.environ['openai']
+openai.Model.list()
+
+country = "gb"
+url = f"https://newsapi.org/v2/top-headlines?country={country}&apiKey={news}"
+
+result = requests.get(url)
+data = result.json()
+
+responses = []
+nurl = []
+
+counter = 0
+for article in data["articles"]:
+  counter += 1
+  if counter > 5:
+    break
+  prompt = (f"""Summarise {article["url"]} in no more than four words, please""")
+  response = openai.Completion.create(model="text-davinci-002", prompt=prompt, temperature=0, max_tokens = 20)
+  responses.append(response["choices"][0]["text"].strip())
+  nurl.append({article["url"]})
+
+cID = os.environ['CLIENT_ID']
+cSC = os.environ['CLIENT_SECRET']
+
+url = "https://accounts.spotify.com/api/token"
+data = { "grant_type": "client_credentials"}
+auth = HTTPBasicAuth(cID, cSC)
+
+response = requests.post(url, data=data, auth=auth)
+accessToken = response.json()["access_token"]
+headers = {"Authorization" : f"Bearer {accessToken}"}
+
+songs = []
+
+for response in responses:
+  headline = response.replace(" ", "%20")
+  headline = response.replace(".", "")
+  headline = response.replace(":", "")
+  surl = "https://api.spotify.com/v1/search"
+  search = f"?q={headline}&type=track"
+  furl = f"{surl}{search}"
+  response = requests.get(furl, headers = headers)
+  data = response.json()
+  songs.append(data["tracks"]["items"][0])
+
+for i in range(5):
+  print(responses[i])
+  print(nurl[i])
+  print(songs[i]["name"])
+  print(songs[i]["preview_url"])
+  print()
