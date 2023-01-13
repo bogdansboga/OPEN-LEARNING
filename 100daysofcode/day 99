@@ -1,0 +1,62 @@
+import requests, schedule, time, os, smtplib
+from replit import db
+from bs4 import BeautifulSoup
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+interest = ["education", "collaboration", "AI"]
+
+keys = db.keys()
+
+def email(text, link):
+  passw = os.environ['mailPassword']
+  usern = os.environ['mailUsername']
+  host = "smtp.gmail.com"
+  port = 587
+  s = smtplib.SMTP(host=host, port=port)
+  s.starttls()
+  s.login(usern, passw)
+
+  mess = MIMEMultipart()
+  mess["To"] = usern
+  mess["From"] = usern
+  mess["Subject"] = "NEW EVENT"
+  text = f"""<a href="{link}">{text}</a>"""
+  msg.attach(MIMEText(text, 'html'))
+  s.send_message(mess)
+  del mess
+  
+def get():
+  
+  url = "https://replit.com/community-hub"
+  
+  response = requests.get(url)
+  html = response.text
+  
+  soup = BeautifulSoup(html, "html.parser")
+  
+  links = soup.find_all("div", {"class": "css-36v8q4"})
+  
+  counter = 0
+  keys = db.keys()
+  for link in links:
+    if "Community Spaces" in link.text:
+      break
+    if counter!=0:
+      print(link.text)
+      tlink = link.find("a")['href']
+      print(tlink)
+      words = link.text.split()
+      isinterest = False
+      for word in words:
+        if word.lower() in interest:
+         isinterest = True
+      if isinterest and link.text not in keys:
+        db[link.text] = tlink
+        email(link.text, tlink)
+    counter+=1
+    
+schedule.every(3).hours.do(get)
+while True:
+  schedule.run_pending()
+  time.sleep(1)
